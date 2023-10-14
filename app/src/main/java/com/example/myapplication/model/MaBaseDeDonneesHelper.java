@@ -18,7 +18,7 @@ public class MaBaseDeDonneesHelper extends SQLiteOpenHelper {
         super(context, NOM_BDD, null, VERSION_BDD);
         try {
             this.db = this.getReadableDatabase();
-            this.insertData("fdppppppppppppppppppp");
+            this.insertData("fdpppppppppppppppppppJHGB");
             try {
                 Cursor cursor = this.db.rawQuery("select * from MaTable", null);
 

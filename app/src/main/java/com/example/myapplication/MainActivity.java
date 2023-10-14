@@ -1,5 +1,5 @@
 package com.example.myapplication;
-
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.os.Bundle;
 
@@ -9,23 +9,25 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
+import java.util.List;
 import androidx.core.view.WindowCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
+import androidx.room.Entity;
 import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-
+import com.example.myapplication.model.*;
+//import com.example.myapplication.model.Task;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,16 +51,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try{
-            MaBaseDeDonneesHelper dbHelper = new MaBaseDeDonneesHelper(this);
+            //MaBaseDeDonneesHelper dbHelper = new MaBaseDeDonneesHelper(this);
+
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        Task task = new Task();
+                        task.title = "Faire les courses";
+                        task.description = "Acheter du lait, des œufs, etc.";
+                        Myapp.database.taskDao().insertTask(task);
+                        System.out.println("je suis laaaa" + Myapp.database.taskDao().getAllTasks().iterator().next().title);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            thread.start();
+
 
         }catch(Exception e){
-            System.out.println("notre erreur c'est "+e);
+            System.out.println("notre erreur c'est "+e.getMessage());
         }
-
-
-
-
-
     }
 
     @Override
