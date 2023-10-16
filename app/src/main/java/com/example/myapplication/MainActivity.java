@@ -1,27 +1,26 @@
 package com.example.myapplication;
 import android.annotation.SuppressLint;
-import android.content.ContentValues;
 import android.os.Bundle;
 
-import com.example.myapplication.model.MaBaseDeDonneesHelper;
-import com.google.android.material.snackbar.Snackbar;
 
+import com.example.myapplication.helper.Myapp;
+import com.example.myapplication.models.User;
+import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-import java.util.List;
-import androidx.core.view.WindowCompat;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.room.Entity;
+
 import com.example.myapplication.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import com.example.myapplication.model.*;
-//import com.example.myapplication.model.Task;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -57,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        Task task = new Task();
-                        task.title = "Faire les courses";
-                        task.description = "Acheter du lait, des œufs, etc.";
-                        Myapp.database.taskDao().insertTask(task);
-                        System.out.println("je suis laaaa" + Myapp.database.taskDao().getAllTasks().iterator().next().title);
+                        User user = new User("fawzi","fawziouaheb@gmail.com","mdp");
+
+                        Myapp.database.UserDao().insertUser(user);
+                        System.out.println("je suis laaaa" + Myapp.database.UserDao().getAllUsers().iterator().next().name);
+                               System.out.println("j'ai bien inséré");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

@@ -1,4 +1,4 @@
-package com.example.myapplication.model;
+package com.example.myapplication.helper;
 import androidx.room.Room;
 import android.app.Application;
 
@@ -9,7 +9,7 @@ public class Myapp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        database = Room.databaseBuilder(this, AppDatabase.class, "my-app-database").allowMainThreadQueries().build();
+        database = Room.databaseBuilder(this,AppDatabase.class, "base_de_donnee").allowMainThreadQueries().build();
         System.out.println("mon objcet c'estttttttt "+database);
     }
 }

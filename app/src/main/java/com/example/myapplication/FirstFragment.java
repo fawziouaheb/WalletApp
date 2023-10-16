@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.databinding.FragmentFirstBinding;
-import com.example.myapplication.model.MaBaseDeDonneesHelper;
+//import com.example.myapplication.model.MaBaseDeDonneesHelper;
 
 public class FirstFragment extends Fragment {
 
